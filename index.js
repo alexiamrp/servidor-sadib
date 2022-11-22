@@ -28,7 +28,7 @@ const auth = new google.auth.GoogleAuth({
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://sadib.com.s3-website-us-east-1.amazonaws.com"],
+    origin: ["http://sadib.com.s3-website-us-east-1.amazonaws.com/"],
     methods: ["GET", "POST","PUT","DELETE"],
     credentials: true,
   })
@@ -390,6 +390,7 @@ async function createAndUploadFile(auth,dibujo){
       break;
   }
 }
+
 
 app.listen(3001, () => {
   console.log("Servidor corriendo, puerto 3001");
