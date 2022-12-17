@@ -84,6 +84,8 @@ app.get("/login", (req, res) => {
   } else {
     res.send({ loggedIn: false });
   }
+  
+  console.log(res);
 });
 
 app.get('/logout',  (req, res) => {
