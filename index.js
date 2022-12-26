@@ -331,6 +331,12 @@ app.post("/respuestasHTP", (req,res) =>{
       res.send(Promise.resolve());
     }
   });
+  //   respuestas = JSON.stringify(respuestas);
+  // fs.writeFile('./respuestas/'+nombre+'HTP.json', respuestas, (err) => {
+  //     if (!err) {
+  //         console.log('respuesta guardada');
+  //     }
+  // });
 });
 
 app.post("/respuestasTAMAI", (req,res) =>{
@@ -355,6 +361,12 @@ app.post("/respuestasTAMAI", (req,res) =>{
       res.send(Promise.resolve());
     }
   });
+  // respuestas = JSON.stringify(respuestas);
+  // fs.writeFile('./respuestas/'+nombre+'TAMAI.json', respuestas, (err) => {
+  //     if (!err) {
+  //         console.log('respuesta guardada');
+  //     }
+  // });
 });
 
 app.post("/resultadosTAMAI", (req,res) =>{
@@ -398,6 +410,12 @@ app.post("/resultadosTAMAI", (req,res) =>{
       res.send(Promise.resolve());
     }
 });
+//   resultados = JSON.stringify(resultados);
+//   fs.writeFile('./resultados/'+nombre+'resultadosTAMAI.json', resultados, (err) => {
+//     if (!err) {
+//         console.log('respuesta guardada');
+//     }
+// });
 });
 
 app.post("/asignarPrueba", (req,res) =>{
