@@ -383,7 +383,6 @@ app.post("/resultadosTAMAI", (req,res) =>{
   let resultados = req.body.resTAMAI;
   let today_local = new Date().toLocaleDateString("en-US", {timeZone: "America/Mexico_City"});
   let today = new Date(today_local);
-  console.log(today);
   let dd = String(today.getDate()).padStart(2, '0');
   let mm = String(today.getMonth() + 1).padStart(2, '0'); 
   let yyyy = today.getFullYear();
