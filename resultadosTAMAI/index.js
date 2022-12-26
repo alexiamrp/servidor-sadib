@@ -1,4 +1,4 @@
-module.exports = (resultados,dd,mm,yyyy) => {
+module.exports = (resultados,dd,mm,yyyy,pac,edad,genero) => {
     return `
     <!doctype html>
     <html>
@@ -71,9 +71,9 @@ module.exports = (resultados,dd,mm,yyyy) => {
             </div>
         <head/>
         <body>            
-                <h6>Paciente</h6>
-                <h6>Género</h6>
-                <h6>Edad</h6>
+                <h6>Paciente: ${pac}</h6>
+                <h6>Género: ${genero}</h6>
+                <h6>Edad: ${edad}</h6>
             <h6>
                 <table class="table-tamai">
                     <thead class="table-tamai">
