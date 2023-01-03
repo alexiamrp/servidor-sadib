@@ -18,6 +18,7 @@ const KEYFILEPATH = 'cryptic-lattice-361623-36680065feaa.json';
 const pdfTemplate = require('./documentos');
 const pdfTemplate2 = require('./documentosTAMAI');
 const plantillaResTAMAI = require('./resultadosTAMAI');
+const plantillaResHTP = require('./resultadosHTP');
 // Request full drive access.
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
 // Create a service account initialize with the service account key file and scope needed
@@ -331,12 +332,6 @@ app.post("/respuestasHTP", (req,res) =>{
       res.send(Promise.resolve());
     }
   });
-  //   respuestas = JSON.stringify(respuestas);
-  // fs.writeFile('./respuestas/'+nombre+'HTP.json', respuestas, (err) => {
-  //     if (!err) {
-  //         console.log('respuesta guardada');
-  //     }
-  // });
 });
 
 app.post("/respuestasTAMAI", (req,res) =>{
@@ -361,12 +356,6 @@ app.post("/respuestasTAMAI", (req,res) =>{
       res.send(Promise.resolve());
     }
   });
-  // respuestas = JSON.stringify(respuestas);
-  // fs.writeFile('./respuestas/'+nombre+'TAMAI.json', respuestas, (err) => {
-  //     if (!err) {
-  //         console.log('respuesta guardada');
-  //     }
-  // });
 });
 
 app.post("/resultadosTAMAI", (req,res) =>{
@@ -409,12 +398,49 @@ app.post("/resultadosTAMAI", (req,res) =>{
       res.send(Promise.resolve());
     }
 });
-//   resultados = JSON.stringify(resultados);
-//   fs.writeFile('./resultados/'+nombre+'resultadosTAMAI.json', resultados, (err) => {
-//     if (!err) {
-//         console.log('respuesta guardada');
-//     }
-// });
+});
+
+app.post("/resultadosHTP", (req,res) =>{
+  let nombre = req.session.user[0].nombre+req.session.user[0].apellidop+req.session.user[0].apellidom;
+  let pac = req.session.user[0].nombre+" "+req.session.user[0].apellidop+" "+req.session.user[0].apellidom;
+  let fecha_nac = req.session.user[0].fecha_nac;
+  let fechaNac=fecha_nac.substring(0,10);
+  let fecha=new Date(fechaNac);
+  let mes_dif = Date.now()-fecha.getTime();
+  let edad_dif=new Date(mes_dif);
+  let anio =edad_dif.getUTCFullYear();
+  let edad=Math.abs(anio-1970);
+  let genero = req.session.user[0].genero;
+  let resultados = req.body.respuestas;
+  let today_local = new Date().toLocaleDateString("en-US", {timeZone: "America/Mexico_City"});
+  let today = new Date(today_local);
+  console.log(today);
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); 
+  let yyyy = today.getFullYear();
+  let fileName= nombre+'resultadoHTP.pdf';
+  let table = 'resultado';
+  let token = req.session.user[0].id_token;
+  let prueba =  req.session.user[0].id_prueba;
+  let parent='1W3XJfBUoWmPDfjkS7bjjbdZANRJnrOI0';
+  const fs = require('fs');
+  db.query(
+    "UPDATE token SET estado=? WHERE id_token=?",['Resuelto',token],(err,result) => { console.log(err);
+    console.log("Actualizado"); }
+  );
+  pdf.create(plantillaResHTP(resultados,dd,mm,yyyy,pac,edad,genero), {"format": 'Letter', "border": {
+    "top": "25mm",            // default is 0, units: mm, cm, in, px
+    "bottom": "25mm",
+  },
+ }).toBuffer(function (err, buffer) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(buffer)
+      createAndUploadPDF(auth,buffer,fileName,parent,table,token,prueba).catch(console.error());
+      res.send(Promise.resolve());
+    }
+});
 });
 
 app.post("/asignarPrueba", (req,res) =>{
@@ -469,13 +495,26 @@ app.post("/asignarPrueba", (req,res) =>{
 
 });
 
-app.post("/dibujo", upload.single('dibujo'), (req,res)=>{
+
+app.post("/dibujoCasa", upload.single('dibujo'), (req,res)=>{
   //console.log(Readable.from(req.file.buffer));
-  createAndUploadFile(auth,req.file).catch(console.error);
+  createAndUploadFile(auth,req.file,'1f3MqFKUIB_CBkh6J0to9pek97LMdqafo').catch(console.error);
 
 });
 
-async function createAndUploadFile(auth,dibujo){
+app.post("/dibujoPersona", upload.single('dibujo'), (req,res)=>{
+  //console.log(Readable.from(req.file.buffer));
+  createAndUploadFile(auth,req.file,'11IMwMCGtXQ8ELLsLNxvI4cy1YCBVw4gb').catch(console.error);
+
+});
+
+app.post("/dibujoArbol", upload.single('dibujo'), (req,res)=>{
+  //console.log(Readable.from(req.file.buffer));
+  createAndUploadFile(auth,req.file,'16CxAMgKQBKzc69dASFDwMht4kDqcp_LP').catch(console.error);
+  
+});
+
+async function createAndUploadFile(auth,dibujo,parents){
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, '0');
   let mm = String(today.getMonth() + 1).padStart(2, '0'); 
@@ -489,7 +528,7 @@ async function createAndUploadFile(auth,dibujo){
     
   let fileMetadata = {
     'name': filename,
-    'parents':  [  '1WF_S3p_S6TJht9NCRs94MMcW3nKuC2Eu'  ]
+    'parents':  [  parents  ]
   };
   let media = {
     mimeType: 'image/jpeg',
@@ -513,7 +552,6 @@ async function createAndUploadFile(auth,dibujo){
       break;
   }
 }
-
 
 async function createAndUploadPDF(auth,buffer,fileName,parent,table,token,prueba){
   const driveService = google.drive(  {version:'v3',auth});
