@@ -433,6 +433,7 @@ app.post("/resultadosHTP", (req,res) =>{
     "bottom": "25mm",
   },
  }).toBuffer(function (err, buffer) {
+  
     if (err) {
       console.log(err)
     } else {
