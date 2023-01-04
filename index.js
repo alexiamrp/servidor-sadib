@@ -567,7 +567,7 @@ async function createAndUploadPDF(auth,buffer,fileName,parent,table,token,prueba
   };
   let media = {
     mimeType: "application/pdf",
-    body:ReadableStream.from(buffer)
+    body:Readable.from(buffer)
   };
 
 
