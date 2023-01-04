@@ -160,7 +160,7 @@ module.exports = (respuestas) => {
         h6.tamai{
             font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-style: normal;
-            font-size: 15px;
+            font-size: 10px;
             line-height: auto;
             color: black;
             text-shadow:none;

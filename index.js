@@ -385,11 +385,15 @@ app.post("/resultadosTAMAI", (req,res) =>{
     "UPDATE token SET estado=? WHERE id_token=?",['Resuelto',token],(err,result) => { console.log(err);
     console.log("Actualizado"); }
   );
-  pdf.create(plantillaResTAMAI(resultados,dd,mm,yyyy,pac,edad,genero), {"format": 'Letter', "border": {
-    "top": "25mm",            // default is 0, units: mm, cm, in, px
-    "bottom": "25mm",
+  pdf.create(plantillaResTAMAI(resultados,dd,mm,yyyy,pac,edad,genero), {"format": "Letter", 
+  "border": {
+    "top": "2in",            // default is 0, units: mm, cm, in, px
+    "right": "1in",
+    "bottom": "2in",
+    "left": "1.5in"
+  }
   },
- }).toBuffer(function (err, buffer) {
+ ).toBuffer(function (err, buffer) {
     if (err) {
       console.log(err)
     } else {
