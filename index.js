@@ -432,7 +432,7 @@ app.post("/resultadosHTP", (req,res) =>{
     "UPDATE token SET estado=? WHERE id_token=?",['Resuelto',token],(err,result) => { console.log(err);
     console.log("Actualizado"); }
   );
-  pdf.create(plantillaResHTP(resultados,dd,mm,yyyy,pac,edad,genero), {"format": 'A3',  "border": {
+  pdf.create(plantillaResHTP(resultados,dd,mm,yyyy,pac,edad,genero), {"format": 'Letter',  "border": {
     "top": "2in",            // default is 0, units: mm, cm, in, px
     "right": "1in",
     "bottom": "2in",

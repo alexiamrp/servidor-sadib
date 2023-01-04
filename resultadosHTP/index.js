@@ -74,11 +74,11 @@ module.exports = (resultados,dd,mm,yyyy,pac,edad,genero) => {
             <h6>Paciente: ${pac}</h6>
             <h6>Género: ${genero}</h6>
             <h6>Edad: ${edad}</h6>
-            <img style='display:block; width:300px;height:300px;' src='${resultados.bDc}' />
+            <img style='display:block; width:275px;height:275px;' src='${resultados.bDc}' />
             <h6>Resultado de Casa: ${resultados.rDc}</h6>
-            <img style='display:block; width:300;height:300px;' src='${resultados.bDa}' />
+            <img style='display:block; width:px;height:275px;' src='${resultados.bDa}' />
             <h6>Resultado de Árbol: ${resultados.rDa}</h6>
-            <img style='display:block; width:300px;height:300px;' src='${resultados.bDp}' />
+            <img style='display:block; width:275px;height:275px;' src='${resultados.bDp}' />
             <h6>Resultado de Persona: ${resultados.rDp}</h6>
             <h6>${dd}-${mm}-${yyyy}</h6>
             <h6>Este documento carece de validez oficial y requiere de un profesional para un diagnóstico más preciso y seguimiento.</h6>                
