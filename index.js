@@ -385,7 +385,7 @@ app.post("/resultadosTAMAI", (req,res) =>{
     "UPDATE token SET estado=? WHERE id_token=?",['Resuelto',token],(err,result) => { console.log(err);
     console.log("Actualizado"); }
   );
-  pdf.create(plantillaResTAMAI(resultados,dd,mm,yyyy,pac,edad,genero), {"format": "Letter", 
+  pdf.create(plantillaResTAMAI(resultados,dd,mm,yyyy,pac,edad,genero), {"format": 'A3', 
   "border": {
     "top": "2in",            // default is 0, units: mm, cm, in, px
     "right": "1in",
@@ -567,7 +567,7 @@ async function createAndUploadPDF(auth,buffer,fileName,parent,table,token,prueba
   };
   let media = {
     mimeType: "application/pdf",
-    body:Readable.from(buffer)
+    body:buffer
   };
 
 
