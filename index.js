@@ -544,7 +544,7 @@ app.post("/analisisArbol",(req,res)=>{
     resultado='Autocontrol';
     console.log('Autocontrol');                
   }else if(mayorIndice==1){
-    resultado='rDa','Inseguridad';
+    resultado='Inseguridad';
     console.log('Inseguridad');                
   }
   //Datos para debuggear
