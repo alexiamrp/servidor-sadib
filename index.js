@@ -316,6 +316,16 @@ app.get("/datosPaciente",(req,res)=>{
 
 app.post("/respuestasHTP", (req,res) =>{
   let nombre = req.session.user[0].nombre+req.session.user[0].apellidop+req.session.user[0].apellidom;
+  let pac = req.session.user[0].nombre+" "+req.session.user[0].apellidop+" "+req.session.user[0].apellidom;
+  let fecha_nac = req.session.user[0].fecha_nac;
+  let fechaNac=fecha_nac.substring(0,10);
+  let fecha=new Date(fechaNac);
+  let mes_dif = Date.now()-fecha.getTime();
+  let edad_dif=new Date(mes_dif);
+  let anio =edad_dif.getUTCFullYear();
+  let edad=Math.abs(anio-1970);
+  let genero = req.session.user[0].genero;
+
   let respuestas = req.body.respuestas;
   let fileName= nombre+'respuestasHTP.pdf';
   let table = 'respuesta';
@@ -324,7 +334,7 @@ app.post("/respuestasHTP", (req,res) =>{
   let parent='1SpsHIylqeQpfPdSySqHFJ55jojxnu854';
 
   const fs = require('fs');
-  pdf.create(pdfTemplate(respuestas), {"format": 'Letter', "border": {
+  pdf.create(pdfTemplate(resultados,dd,mm,yyyy,pac,edad,genero), {"format": 'Letter', "border": {
     "top": "25mm",            
     "bottom": "25mm"
   },
@@ -341,6 +351,15 @@ app.post("/respuestasHTP", (req,res) =>{
 
 app.post("/respuestasTAMAI", (req,res) =>{
   let nombre = req.session.user[0].nombre+req.session.user[0].apellidop+req.session.user[0].apellidom;
+  let pac = req.session.user[0].nombre+" "+req.session.user[0].apellidop+" "+req.session.user[0].apellidom;
+  let fecha_nac = req.session.user[0].fecha_nac;
+  let fechaNac=fecha_nac.substring(0,10);
+  let fecha=new Date(fechaNac);
+  let mes_dif = Date.now()-fecha.getTime();
+  let edad_dif=new Date(mes_dif);
+  let anio =edad_dif.getUTCFullYear();
+  let edad=Math.abs(anio-1970);
+  let genero = req.session.user[0].genero;
   let respuestas = req.body.respuestas;
   let fileName= nombre+'respuestasTAMAI.pdf';
   let table = 'respuesta';
@@ -348,7 +367,7 @@ app.post("/respuestasTAMAI", (req,res) =>{
   let prueba =  req.session.user[0].id_prueba;
   let parent='1SpsHIylqeQpfPdSySqHFJ55jojxnu854';
   const fs = require('fs');
-  pdf.create(pdfTemplate2(respuestas), {"format": 'Letter', "border": {
+  pdf.create(pdfTemplate2(resultados,dd,mm,yyyy,pac,edad,genero), {"format": 'Letter', "border": {
     "top": "25mm",            // default is 0, units: mm, cm, in, px
     "bottom": "25mm",
   },

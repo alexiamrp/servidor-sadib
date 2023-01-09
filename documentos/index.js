@@ -1,201 +1,198 @@
-module.exports = (respuestas) => {
+module.exports = (respuestas,dd,mm,yyyy,pac,edad,genero) => {
     return `
     <!doctype html>
     <html>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+    <meta charset="utf-8">
+    <head>
         <style>
-        
-
-        html, body{
-            overflow-x: hidden;
-        }
-        
-        .container{
-            width: 100%;
-            height: auto;
-        }
-        
-        .formulario{
-            position: relative;
-            width: 100%;
-            margin-top:6%;
-            background: #FFFFFF;
-            /*background: #94CBBD;*/
-            border-radius: 10px 10px 10px 10px;
-        }
-        
-        .instrucciones{
-            position:relative;
-            width: 100%;
-            height: auto;
-            background: rgba(36, 105, 160, 0.76);
-            border-radius: 10px 10px 10px 10px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        
-        .preguntas{
-            position:relative;
-            width: 100%;
-            padding-left: 5%;
-            padding-top: 3%;
-            padding-bottom: 15%;
-        }
-        
-        .seccion{
-            position: relative;
-            width: 95%;
-            height: auto;
-            background: rgba(36, 105, 160, 0.76);
-            border-radius: 10px 10px 10px 10px;
-            padding-top: 7.5px;
-            padding-bottom: 5px;
-        }
-        
-        .form-control{
-            width: 65%;
-            resize: none;
-        }
-        
-        h1.titulo{
-            font-family: 'Gothic A1';
-            font-style: normal;
-            font-weight: 700;
-            line-height: 7vw;
-            color: #2469A0;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-        
-        h1.gracias{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 5.5vw;
-            font-size: 35px;
-            color: #2469A0;
-        }
-        
-        h5.gracias{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-style: normal;
-            line-height: 4vw;
-            color: #2469A0;
-            font-size: 22px;
-        }
-        
-        h3{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-style: normal;
-            font-size: 15px;
-            line-height: 20px;
-            color: black;
-        }
-        
-        h4.nombre{
-            font-family: 'Gothic A1';
-            font-style: normal;
-            font-weight: 700;
-            line-height: auto;
-            color: #2469A0;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-        
-        h6.desc{
-            font-family: 'Gothic A1';
-            font-style: normal;
-            font-weight: 500;
-            line-height: auto;
-            color: rgba(0, 0, 0, 0.8);
-        }
-        
-        h1.func{
-            font-family: 'Gothic A1';
-            font-style: normal;
-            font-weight: 700;
-            line-height: auto;
-            color: #2469A0;
-        }
-        
-        h3.cuad{
-            font-family: 'Gothic A1';
-            font-style: normal;
-            font-weight: 400;
-            line-height: auto;
-            color: rgba(0, 0, 0, 0.8);
-        }
-        
-        h4.seccion{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 110%;
-            text-align: center;
-            color: #FFFFFF;
-            background:none;
-        }
-        
-        h5{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-style: normal;
-            font-size: 50px;
-            color: #FFFFFF;
-            padding-top: 1.5%;
-            padding-bottom: 1.5%;
-            padding-left: 2%;
-            padding-right: 2%;
-        }
-        
-        h5.instrucciones{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-style: normal;
-            font-weight: 700;
-            font-size: 125%;
-            text-align: center;
-            color: #FFFFFF;
-            background:none;
-        }
-        
-        h6.tamai{
-            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-style: normal;
-            font-size: 15px;
-            line-height: auto;
-            color: black;
-            text-shadow:none;
-        }
-        
-        ul.tamai{
-            padding-top: 3%;
-            list-style-image: url('../img/vineta.png');
-            list-style-position: outside;
-            position: relative;
-        }
-        
-        ul.htp{
-            padding-top: 3%;
-            list-style-image: url('../img/vineta.png');
-            list-style-position: outside;
-            position: relative;
-        }
-        
-        .image-center-final{
-            position: relative;
-            top: 10%;
-            margin-bottom: 20%;
-            margin-right: 5%;
-            margin-left: 5%;
-        }
-        
-        .final{
-            width: 100%;
-            height: auto;
-            margin-top: 25%;
-        }
+            html, body{
+                overflow-x: hidden;
+            }
+            
+            .container{
+                width: 100%;
+                height: auto;
+            }
+            
+            .formulario{
+                position: relative;
+                width: 100%;
+                margin-top:6%;
+                background: #FFFFFF;
+                /*background: #94CBBD;*/
+                border-radius: 10px 10px 10px 10px;
+            }
+            
+            .instrucciones{
+                position:relative;
+                width: 100%;
+                height: auto;
+                background: rgba(36, 105, 160, 0.76);
+                border-radius: 10px 10px 10px 10px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            
+            .preguntas{
+                position:relative;
+                width: 100%;
+                padding-left: 5%;
+                padding-top: 3%;
+                padding-bottom: 15%;
+            }
+            
+            .seccion{
+                position: relative;
+                width: 95%;
+                height: auto;
+                background: rgba(36, 105, 160, 0.76);
+                border-radius: 10px 10px 10px 10px;
+                padding-top: 7.5px;
+                padding-bottom: 5px;
+            }
+            
+            .form-control{
+                width: 65%;
+                resize: none;
+            }
+            
+            h1.titulo{
+                font-family: 'Gothic A1';
+                font-style: normal;
+                font-weight: 700;
+                line-height: 7vw;
+                color: #2469A0;
+                text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+            
+            h1.gracias{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 5.5vw;
+                font-size: 35px;
+                color: #2469A0;
+            }
+            
+            h5.gracias{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-style: normal;
+                line-height: 4vw;
+                color: #2469A0;
+                font-size: 22px;
+            }
+            
+            h3{
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-style: normal;
+                font-size: 15px;
+                line-height: 20px;
+                color: black;
+            }
+            
+            h4.nombre{
+                font-family: 'Gothic A1';
+                font-style: normal;
+                font-weight: 700;
+                line-height: auto;
+                color: #2469A0;
+                text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+            
+            h6.desc{
+                font-family: 'Gothic A1';
+                font-style: normal;
+                font-weight: 500;
+                line-height: auto;
+                color: rgba(0, 0, 0, 0.8);
+            }
+            
+            h1.func{
+                font-family: 'Gothic A1';
+                font-style: normal;
+                font-weight: 700;
+                line-height: auto;
+                color: #2469A0;
+            }
+            
+            h3.cuad{
+                font-family: 'Gothic A1';
+                font-style: normal;
+                font-weight: 400;
+                line-height: auto;
+                color: rgba(0, 0, 0, 0.8);
+            }
+            
+            h4.seccion{
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 110%;
+                text-align: center;
+                color: #FFFFFF;
+                background:none;
+            }
+            
+            h5{
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-style: normal;
+                font-size: 50px;
+                color: #FFFFFF;
+                padding-top: 1.5%;
+                padding-bottom: 1.5%;
+                padding-left: 2%;
+                padding-right: 2%;
+            }
+            
+            h5.instrucciones{
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 125%;
+                text-align: center;
+                color: #FFFFFF;
+                background:none;
+            }
+            
+            h6.tamai{
+                font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-style: normal;
+                font-size: 10px;
+                line-height: auto;
+                color: black;
+                text-shadow:none;
+            }
+            
+            ul.tamai{
+                padding-top: 3%;
+                list-style-image: url('../img/vineta.png');
+                list-style-position: outside;
+                position: relative;
+            }
+            
+            ul.htp{
+                padding-top: 3%;
+                list-style-image: url('../img/vineta.png');
+                list-style-position: outside;
+                position: relative;
+            }
+            
+            .image-center-final{
+                position: relative;
+                top: 10%;
+                margin-bottom: 20%;
+                margin-right: 5%;
+                margin-left: 5%;
+            }
+            
+            .final{
+                width: 100%;
+                height: auto;
+                margin-top: 25%;
+            }
         
         </style>
-        <meta charset="utf-8">
+    </head>
         <body>
             <div className="container">    
                 <div className="main row">
@@ -206,7 +203,7 @@ module.exports = (respuestas) => {
                                 <div className="instrucciones">
                                     <div align="center">
                                         
-                                            <h5 class="instrucciones">Respuestas dadas por el paciente</h5>
+                                            <h5 class="instrucciones">Respuestas dadas por el paciente: en la prueba HTP</h5>
                                        
                                     </div>
                                 </div>

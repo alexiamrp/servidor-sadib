@@ -67,7 +67,7 @@ module.exports = (resultados,dd,mm,yyyy,pac,edad,genero) => {
             
             </style>
             <div align="center">
-                <h5>Resultado prueba TAMAI</h5>
+                <h5>Resultado prueba HTP</h5>
             </div>
         <head/>
         <body>            
