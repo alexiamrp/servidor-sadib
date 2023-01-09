@@ -267,6 +267,7 @@ app.get("/obtenerExpediente",(req,res)=>{
 app.delete("/eliminar", (req,res) =>{
 
   const id_paci= req.query;
+  console.log(id_paci);
 
   db.query(
     "DELETE FROM paciente where id_paci=?",[id_paci],(err,result) => { console.log(err); res.send(JSON.stringify(result));}
