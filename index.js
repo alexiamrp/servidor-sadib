@@ -269,7 +269,7 @@ app.delete("/eliminar", (req,res) =>{
   const id_paci= req.query;
 
   db.query(
-    "DELETE * FROM paciente where id_paci=?",[id_paci],(err,result) => { console.log(err); res.send(JSON.stringify(result));}
+    "DELETE FROM paciente where id_paci=?",[id_paci],(err,result) => { console.log(err); res.send(JSON.stringify(result));}
   );
 });
 
