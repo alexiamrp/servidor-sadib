@@ -203,7 +203,10 @@ module.exports = (respuestas,dd,mm,yyyy,pac,edad,genero) => {
                                 <div className="instrucciones">
                                     <div align="center">
                                         
-                                            <h5 class="instrucciones">Respuestas dadas por el paciente: en la prueba HTP</h5>
+                                            <h5 class="instrucciones">Respuestas dadas en la prueba HTP</h5>
+                                            <h6>Paciente: ${pac}</h6>
+                                            <h6>Género: ${genero}</h6>
+                                            <h6>Edad: ${edad}</h6>
                                        
                                     </div>
                                 </div>
