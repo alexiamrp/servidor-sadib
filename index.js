@@ -266,7 +266,7 @@ app.get("/obtenerExpediente",(req,res)=>{
 
 app.delete("/eliminar", (req,res) =>{
 
-  const id_paci= req.query;
+  const id_paci= req.query.id_paci;
   console.log(id_paci);
 
   db.query(
