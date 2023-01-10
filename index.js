@@ -336,8 +336,13 @@ app.post("/respuestasHTP", (req,res) =>{
   let anio =edad_dif.getUTCFullYear();
   let edad=Math.abs(anio-1970);
   let genero = req.session.user[0].genero;
-
-  let respuestas = req.body.respuestas;
+  let resultados = req.body.respuestas;
+  let today_local = new Date().toLocaleDateString("en-US", {timeZone: "America/Mexico_City"});
+  let today = new Date(today_local);
+  console.log(today);
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); 
+  let yyyy = today.getFullYear();
   let fileName= nombre+'respuestasHTP.pdf';
   let table = 'respuesta';
   let token = req.session.user[0].id_token;
@@ -372,6 +377,11 @@ app.post("/respuestasTAMAI", (req,res) =>{
   let edad=Math.abs(anio-1970);
   let genero = req.session.user[0].genero;
   let respuestas = req.body.respuestas;
+  let today_local = new Date().toLocaleDateString("en-US", {timeZone: "America/Mexico_City"});
+  let today = new Date(today_local);
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); 
+  let yyyy = today.getFullYear();
   let fileName= nombre+'respuestasTAMAI.pdf';
   let table = 'respuesta';
   let token = req.session.user[0].id_token;
