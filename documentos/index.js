@@ -818,7 +818,7 @@ module.exports = (respuestas,dd,mm,yyyy,pac,edad,genero) => {
                                     <div className="main row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <ul class="htp">
-                                               <h6 class="tamai">68. (Pídale al sujeto que dibuje al Sol y la línea base en cada dibujo) Suponga que el Sol fuera alguna persona que usted conoce ¿quién sería? </h6>
+                                               <h6 class="tamai">68. Suponga que el Sol fuera alguna persona que usted conoce ¿quién sería? </h6>
                                                 <textarea class="form-control" name="p68" >${respuestas.p68}</textarea>
                                             </ul>
                                         </div>
