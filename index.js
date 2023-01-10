@@ -294,8 +294,8 @@ app.put("/editarPsic", (req,res) =>{
     "UPDATE login SET correo=?, contrasenia=? WHERE id_usuario=?",[correo,contrasenia,usuario],(err,result) => { console.log(err); }
   );
   db.query(
-    "SELECT nombre, apellidop, apellidop,apellidom, telefono, rol, id_usuario, login.correo, login.contrasenia FROM psicologo INNER JOIN login ON login.correo=psicologo.correo WHERE psicologo.id_usuario = ?;",
-    [usuario],
+    "SELECT nombre, apellidop, apellidom, telefono, rol, id_usuario, login.correo, login.contrasenia  FROM login INNER JOIN psicologo ON psicologo.id_psic = login.id_usuario WHERE login.correo = ? and login.contrasenia = ?;",
+    [correo,contrasenia],
     (err, result) => {
       
             req.session.user = result;
