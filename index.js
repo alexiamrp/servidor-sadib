@@ -336,7 +336,7 @@ app.post("/respuestasHTP", (req,res) =>{
   let anio =edad_dif.getUTCFullYear();
   let edad=Math.abs(anio-1970);
   let genero = req.session.user[0].genero;
-  let resultados = req.body.respuestas;
+  let respuestas = req.body.respuestas;
   let today_local = new Date().toLocaleDateString("en-US", {timeZone: "America/Mexico_City"});
   let today = new Date(today_local);
   console.log(today);
