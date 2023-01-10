@@ -378,7 +378,7 @@ app.post("/respuestasTAMAI", (req,res) =>{
   let prueba =  req.session.user[0].id_prueba;
   let parent='1SpsHIylqeQpfPdSySqHFJ55jojxnu854';
   const fs = require('fs');
-  pdf.create(pdfTemplate2(resultados,dd,mm,yyyy,pac,edad,genero), {"format": 'Letter', "border": {
+  pdf.create(pdfTemplate2(respuestas,dd,mm,yyyy,pac,edad,genero), {"format": 'Letter', "border": {
     "top": "25mm",            // default is 0, units: mm, cm, in, px
     "bottom": "25mm",
   },
@@ -467,7 +467,7 @@ app.post("/resultadosHTP", (req,res) =>{
     "UPDATE token SET estado=? WHERE id_token=?",['Resuelto',token],(err,result) => { console.log(err);
     console.log("Actualizado"); }
   );
-  pdf.create(plantillaResHTP(resultados,dd,mm,yyyy,pac,edad,genero), {"format": 'Letter',  "border": {
+  pdf.create(plantillaResHTP(respuestas,dd,mm,yyyy,pac,edad,genero), {"format": 'Letter',  "border": {
     "top": "2in",            // default is 0, units: mm, cm, in, px
     "right": "1in",
     "bottom": "2in",
